@@ -1,0 +1,86 @@
+sbcl --load gtm_ledger.lisp --port 5000
+This is SBCL 2.5.9, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+To load "ironclad":
+  Load 1 ASDF system:
+    ironclad
+; Loading "ironclad"
+....
+To load "usocket":
+  Load 1 ASDF system:
+    usocket
+; Loading "usocket"
+
+To load "babel":
+  Load 1 ASDF system:
+    babel
+; Loading "babel"
+........
+To load "bordeaux-threads":
+  Load 1 ASDF system:
+    bordeaux-threads
+; Loading "bordeaux-threads"
+
+To load "split-sequence":
+  Load 1 ASDF system:
+    split-sequence
+; Loading "split-sequence"
+
+
+; file: /media/esteban/DATOS/PROYECTOS/PLATAFORMAS_EN_ACCION/agente-lego/gtm_ledger.lisp
+; in: DEFUN PRUEBA-DE-USO-NORMAL-CON-DESCUBRIMIENTO
+;     (BALANCE-A-ANTES (OBTENER-BALANCE AGENTE-A))
+; 
+; caught STYLE-WARNING:
+;   The variable BALANCE-A-ANTES is defined but never used.
+; 
+; compilation unit finished
+;   caught 1 STYLE-WARNING condition
+
+
+=== INICIANDO PRUEBA CON DESCUBRIMIENTO DE PARES (TCP) ===
+
+Agente escuchando en Agente escuchando en 127.0.0.1:9700
+127.0.0.1:9800
+
+--- ESTADO INICIAL DE LA RED (A y B son conocidos globalmente) ---
+Agente A (Semilla) ID: 6f21bbd96a08ae9f. Puerto: 9700. Balance: 2000 tokens.
+Agente B ID: c9e64ca247ed19de. Puerto: 9800. Balance: 1000 tokens.
+Agentes Conocidos (Hash Global): 2
+
+--- [3] AGENTE C SE INICIA Y CONTACTA A A (SEMILLA) ---
+Agente escuchando en 127.0.0.1:9900
+    -> Se envió la lista de 3 pares al solicitante.
+    -> Pares nuevos: Registrando agente en 127.0.0.1:9700.
+    -> Pares nuevos: Registrando agente en 127.0.0.1:9800.
+
+-> Resultados del Descubrimiento en Agente C:
+   Agente C ID: 3583f03b21b2583c. Balance: 1000 tokens.
+   Agentes Conocidos (Hash Global): 3
+
+--- [4] Transacción (A -> C): Enviando 100 tokens ---
+Info: Agente 6f21bbd96a08ae9f registrando transacción (y cambio) localmente.
+    -> UTXO de cambio registrado: a30c055dcbb6c9c742292f9ab7d6c6bb61b2227debbb9ab2b13271a0aaa2f739:1, Monto: 1900
+Info: Propagando T1 (A->C) a la red (A, B, C)... 
+Info: Iniciando propagación de TX T1 en hilo separado.
+    -> Propagando a 127.0.0.1:9800... === INICIANDO PROCESAMIENTO DE TRANSACCIÓN en Agente c9e64ca247ed19de (UTXO Encadenado) ===
+Info: Input es una UTXO Génesis. Confianza implícita.
+=== TRANSACCIÓN ACEPTADA. NUEVOS UTXOs CREADOS. ===
+OK.
+    -> Propagando a 127.0.0.1:9900... === INICIANDO PROCESAMIENTO DE TRANSACCIÓN en Agente 3583f03b21b2583c (UTXO Encadenado) ===
+Info: Input es una UTXO Génesis. Confianza implícita.
+=== TRANSACCIÓN ACEPTADA. NUEVOS UTXOs CREADOS. ===
+-> UTXO creado: a30c055dcbb6c9c742292f9ab7d6c6bb61b2227debbb9ab2b13271a0aaa2f739:0, Monto: 100
+OK.
+
+-> Resultados Finales:
+   Balance A: 1900 (Esperado: 1900)
+   Balance B: 1000 (Sin cambios: 1000)
+   Balance C: 1100 (Esperado: 1100)
+
+=== PRUEBA DE USO FINALIZADA ===
