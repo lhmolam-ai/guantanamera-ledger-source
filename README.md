@@ -18,4 +18,11 @@ Acabo de ejecutar el código y esto pasó en menos de 10 segundos:
 
 Todo con un solo archivo: gtm_ledger.lisp
 
+#La blockchain privada que se demuestra sola
+
+**Un solo comando. Una prueba completa en vivo**
+
+```bash
+sbcl --load gtm_ledger.lisp
+
 ¡Descárgalo y ejecútalo tú mismo ahora mismo!
