@@ -1,4 +1,19 @@
-sbcl --load gtm_ledger.lisp --port 5000
+EJECUTA ESTO EN TU TERMINAL AHORA MISMO:
+sbcl --load gtm_ledger.lisp
+
+Y verás en vivo:
+• 3 nodos arrancan solos (puertos 9700, 9800, 9900)
+• Descubrimiento automático de pares
+• Transacción de 100 tokens de A a C
+• Propagación instantánea
+• Balances finales correctos
+• Doble gasto imposible
+
+Todo en menos de 15 segundos. Sin configurar nada.
+
+PRUEBA REAL:
+
+sbcl --load gtm_ledger.lisp
 This is SBCL 2.5.9, an implementation of ANSI Common Lisp.
 More information about SBCL is available at <http://www.sbcl.org/>.
 
